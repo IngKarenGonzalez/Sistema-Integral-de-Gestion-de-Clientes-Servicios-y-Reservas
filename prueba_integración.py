@@ -7,7 +7,7 @@ from servicios import (
 )
 
 
-# Creamos un cliente
+# Inicio creando un cliente
 cliente = Cliente(
     "C001",
     "Maria Perez",
@@ -16,7 +16,7 @@ cliente = Cliente(
 )
 
 
-# Creamos los servicios
+# Creo los servicios
 sala = ReservaSalas(
     "S001",
     "Sala de reuniones",
@@ -39,7 +39,7 @@ asesoria = AsesoriasEspecializadas(
 )
 
 
-# Creamos las reservas
+# Creo las reservas
 print("\nPRUEBAS DE DESCUENTOS E IMPUESTOS")
 
 for servicio in [sala, equipos, asesoria]:
