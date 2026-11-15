@@ -1,0 +1,71 @@
+2026-11-15 17:05:44,588 | INFO     | ===== INICIO DE LAS SIMULACIONES =====
+2026-11-15 17:05:44,588 | INFO     | OP-01 INICIO: Registrar cliente válido
+2026-11-15 17:05:44,588 | INFO     | OP-01 COMPLETADA: Identificador: C001 | Nombre: María Pérez | Correo: maria@gmail.com | Teléfono: 3001234567
+2026-11-15 17:05:44,588 | INFO     | OP-01 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-02 INICIO: Cliente con correo inválido
+2026-11-15 17:05:44,588 | WARNING  | OP-02 ERROR CONTROLADO (ValueError): El correo electrónico tiene un formato inválido.
+2026-11-15 17:05:44,588 | INFO     | OP-02 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-03 INICIO: Cliente con teléfono con letras
+2026-11-15 17:05:44,588 | WARNING  | OP-03 ERROR CONTROLADO (ValueError): El teléfono debe contener únicamente números.
+2026-11-15 17:05:44,588 | INFO     | OP-03 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-04 INICIO: Cliente con nombre None
+2026-11-15 17:05:44,588 | WARNING  | OP-04 ERROR CONTROLADO (TypeError): El nombre debe ser una cadena de texto.
+2026-11-15 17:05:44,588 | INFO     | OP-04 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-05 INICIO: Crear servicio de sala válido
+2026-11-15 17:05:44,588 | INFO     | OP-05 COMPLETADA: Sala creada, capacidad 20
+2026-11-15 17:05:44,588 | INFO     | OP-05 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-06 INICIO: Sala con capacidad negativa
+2026-11-15 17:05:44,588 | WARNING  | OP-06 ERROR CONTROLADO (ValueError): La capacidad debe ser mayor que cero.
+2026-11-15 17:05:44,588 | INFO     | OP-06 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-07 INICIO: Equipos con cantidad decimal
+2026-11-15 17:05:44,588 | WARNING  | OP-07 ERROR CONTROLADO (TypeError): La cantidad debe ser un número entero.
+2026-11-15 17:05:44,588 | INFO     | OP-07 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-08 INICIO: Instanciar clase abstracta Servicio
+2026-11-15 17:05:44,588 | WARNING  | OP-08 ERROR CONTROLADO (TypeError): Can't instantiate abstract class Servicio without an implementation for abstract methods 'calcular_costo', 'mostrar_informacion'
+2026-11-15 17:05:44,588 | INFO     | OP-08 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-09 INICIO: Asesoría: costo con descuento e impuesto
+2026-11-15 17:05:44,588 | INFO     | OP-09 COMPLETADA: Costo calculado: 171,360.00
+2026-11-15 17:05:44,588 | INFO     | OP-09 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-10 INICIO: Costo con descuento mayor a 100%
+2026-11-15 17:05:44,588 | WARNING  | OP-10 ERROR CONTROLADO (ValueError): El descuento debe estar entre 0 y 100.
+2026-11-15 17:05:44,588 | INFO     | OP-10 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-11 INICIO: Reserva válida y confirmada
+2026-11-15 17:05:44,588 | INFO     | OP-11 COMPLETADA: Reserva confirmada correctamente. Costo: 75,000
+2026-11-15 17:05:44,588 | INFO     | OP-11 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-12 INICIO: Reserva con duración cero
+2026-11-15 17:05:44,588 | WARNING  | OP-12 ERROR CONTROLADO (ValueError): La duración debe ser mayor que cero.
+2026-11-15 17:05:44,588 | INFO     | OP-12 FIN
+2026-11-15 17:05:44,588 | INFO     | OP-13 INICIO: Reserva con cliente inválido
+2026-11-15 17:05:44,588 | WARNING  | OP-13 ERROR CONTROLADO (TypeError): La reserva requiere un objeto Cliente válido.
+2026-11-15 17:05:44,588 | INFO     | OP-13 FIN
+2026-11-15 17:05:44,589 | INFO     | OP-14 INICIO: Confirmar reserva ya confirmada
+2026-11-15 17:05:44,589 | WARNING  | OP-14 ERROR CONTROLADO (ValueError): Solo se pueden confirmar reservas pendientes.
+2026-11-15 17:05:44,589 | INFO     | OP-14 FIN
+2026-11-15 17:05:44,589 | INFO     | OP-15 INICIO: Cancelar una reserva dos veces
+2026-11-15 17:05:44,589 | WARNING  | OP-15 ERROR CONTROLADO (ValueError): La reserva ya se encuentra cancelada.
+2026-11-15 17:05:44,589 | INFO     | OP-15 FIN
+2026-11-15 17:05:44,589 | INFO     | OP-16 INICIO: Confirmar una reserva cancelada
+2026-11-15 17:05:44,589 | WARNING  | OP-16 ERROR CONTROLADO (ValueError): Solo se pueden confirmar reservas pendientes.
+2026-11-15 17:05:44,589 | INFO     | OP-16 FIN
+2026-11-15 17:05:44,589 | INFO     | OP-17 INICIO: Servicio con duración NaN
+2026-11-15 17:05:44,589 | ERROR    | OP-17 DEBIÓ FALLAR con ValueError pero terminó sin error. Resultado: nan
+2026-11-15 17:05:44,589 | INFO     | OP-17 FIN
+2026-11-15 17:05:44,589 | INFO     | OP-18 INICIO: Servicio con impuesto infinito
+2026-11-15 17:05:44,589 | ERROR    | OP-18 DEBIÓ FALLAR con ValueError pero terminó sin error. Resultado: inf
+2026-11-15 17:05:44,589 | INFO     | OP-18 FIN
+2026-11-15 17:05:44,589 | INFO     | OP-19 INICIO: Coherencia: reserva cancelada sin costo
+2026-11-15 17:05:44,589 | ERROR    | OP-19 ERROR INESPERADO (AssertionError): La reserva cancelada conserva costo_total = 100000.0
+Traceback (most recent call last):
+  File "/home/claude/fj/simulacion.py", line 99, in ejecutar_operacion
+    resultado = funcion()
+                ^^^^^^^^^
+  File "/home/claude/fj/simulacion.py", line 235, in op_cancelar_confirmada_limpia_costo
+    exigir(
+  File "/home/claude/fj/simulacion.py", line 82, in exigir
+    raise AssertionError(mensaje)
+AssertionError: La reserva cancelada conserva costo_total = 100000.0
+2026-11-15 17:05:44,591 | INFO     | OP-19 FIN
+2026-11-15 17:05:44,591 | INFO     | OP-20 INICIO: Estabilidad: objetos válidos intactos
+2026-11-15 17:05:44,591 | INFO     | OP-20 COMPLETADA: Objetos válidos intactos después de todos los errores
+2026-11-15 17:05:44,591 | INFO     | OP-20 FIN
+2026-11-15 17:05:44,591 | INFO     | ===== FIN DE LAS SIMULACIONES =====
