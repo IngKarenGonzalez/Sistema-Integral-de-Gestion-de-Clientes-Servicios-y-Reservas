@@ -1,3 +1,12 @@
+# UNIVERSIDAD NACIONAL ABIERTA Y A DISTANCIA - UNAD
+# Curso: PROGRAMACIÓN (213023)
+# Fase 4: PRÁCTICAS SIMULADAS
+# Trabajo: SISTEMA INTEGRAL SOFTWARE FJ
+# Nombre del producto: prueba_integracion.py
+# Autora: María Paula Marín Tolosa
+
+#Importo las clases necesarias para realizar la prueba de integración con mi programa servicios y los de mi compañera.
+
 from cliente import Cliente
 from reserva import Reserva
 from servicios import (
@@ -7,7 +16,7 @@ from servicios import (
 )
 
 
-# Inicio creando un cliente
+# Inicio creando un cliente, donde se ejecutan las validaciones definidas en el cosntructor de cliente para verificar que los datos sean correctos
 cliente = Cliente(
     "C001",
     "Maria Perez",
@@ -16,7 +25,7 @@ cliente = Cliente(
 )
 
 
-# Creo los servicios
+# Creo los servicios donde la clase de servicios heredad de Servicio y esta a su vez hereda de entidad, permitiendo reutilziar características comunes y definir propiedades particulares para cada tipo de servicio.
 sala = ReservaSalas(
     "S001",
     "Sala de reuniones",
@@ -39,8 +48,10 @@ asesoria = AsesoriasEspecializadas(
 )
 
 
-# Creo las reservas
+# Creo las reservas, se inicia la prueba de los cálculos de costos para los 3 servisios
 print("\nPRUEBAS DE DESCUENTOS E IMPUESTOS")
+
+#Se recorren los diferentes servicios utilizando el mismo método , donde cada clase calcula el costo de acuerdo a sus características demostrando el polimorfismo
 
 for servicio in [sala, equipos, asesoria]:
     print(f"\nServicio: {servicio.nombre}")
@@ -57,7 +68,7 @@ reserva2 = Reserva("R002", cliente, equipos, 1.5)
 reserva3 = Reserva("R003", cliente, asesoria, 1.25)
 
 
-# Confirmamos las reservas
+# Confirmamos las reservas,donde se recorre cada reserva para ejecutar su proceso de confirmación, durante el procedimiento se calcula el costo correspondiente y se actualiza el estado de la reserva cuando la operación es valida
 for reserva in [reserva1, reserva2, reserva3]:
     print(reserva.confirmar_reserva())
     print(reserva.mostrar_informacion())
