@@ -9,6 +9,7 @@
 
 from entidad import Entidad
 from abc import abstractmethod
+import math
 
 #Creo la clase base para los 3 tipos de servicios, donde la clase hereda de Entidad para recibir sus características.
 #Además es una clase abstracta ya que sirve como estructura de las clases hijas estableciendo lo que todas implementan (el método de calcular costo)
@@ -35,23 +36,44 @@ class Servicio(Entidad):
         return self.__nombre
 #Este metodo permite centralizar las validaciones necesarias antes de calcular el costo de cualquier servicio, comprobando la duración (debe ser mayor de 0), el descuento (entre 0 y 100), Y que el impuesto sea un número positivo
     def _validar_parametros_calculo(self, duracion, descuento, impuesto):
+
+        # Comprueba que la duración sea numérica.
+        # Los booleanos no se aceptan.
         if not isinstance(duracion, (int, float)) or isinstance(duracion, bool):
             raise TypeError("La duración debe ser un número.")
 
-        if duracion <=0:
-            raise ValueError("La duración debe ser mayor que cero")
+        # Rechaza valores NaN e infinitos.
+        if not math.isfinite(duracion):
+            raise ValueError("La duración debe ser un número finito.")
 
+        # La duración debe ser positiva.
+        if duracion <= 0:
+            raise ValueError("La duración debe ser mayor que cero.")
+
+        # Comprueba que el descuento sea numérico.
         if not isinstance(descuento, (int, float)) or isinstance(descuento, bool):
             raise TypeError("El descuento debe ser un número.")
 
+        # Rechaza descuentos NaN e infinitos.
+        if not math.isfinite(descuento):
+            raise ValueError("El descuento debe ser un número finito.")
+
+        # El descuento debe estar entre 0 y 100.
         if not 0 <= descuento <= 100:
             raise ValueError("El descuento debe estar entre 0 y 100.")
 
+        # Comprueba que el impuesto sea numérico.
         if not isinstance(impuesto, (int, float)) or isinstance(impuesto, bool):
             raise TypeError("El impuesto debe ser un número.")
 
+        # Rechaza impuestos NaN e infinitos.
+        if not math.isfinite(impuesto):
+            raise ValueError("El impuesto debe ser un número finito.")
+
+        # El impuesto no puede ser negativo.
         if impuesto < 0:
             raise ValueError("El impuesto no puede ser negativo.")
+
         
 #Establezco que el metodo abstractmethod se implementara en todas las clases hijas con sus parametros correspondientes antes explicadas
 #Aplico el polimorfismo al implementar el mismo método heredado con comportamientos diferentes según el tipo de servicio
