@@ -228,15 +228,40 @@ def op_servicio_impuesto_infinito():
     return contexto["sala"].calcular_costo(2, impuesto=float("inf"))
 
 
+
 def op_cancelar_confirmada_limpia_costo():
+    """
+    OP-19: Comprueba que cancelar una reserva confirmada
+    elimine el costo previamente calculado.
+
+    Resultado esperado:
+    - Estado de la reserva: CANCELADA.
+    - Costo total de la reserva: None.
+    """
+
+    # Crear una reserva válida.
     reserva = Reserva("R006", contexto["cliente"], contexto["sala"], 2)
+
+    # Confirmar la reserva para generar su costo.
     reserva.confirmar_reserva()
+
+    # Cancelar la reserva previamente confirmada.
     reserva.cancelar_reserva()
+
+    # Comprobar que cambió correctamente de estado.
     exigir(
-        reserva.costo_total in (None, 0),
-        f"La reserva cancelada conserva costo_total = {reserva.costo_total}"
+        reserva.estado == Reserva.CANCELADA,
+        f"Estado incorrecto después de cancelar: {reserva.estado}"
     )
-    return "Costo limpio tras cancelar"
+
+    # Comprobar que el costo fue eliminado.
+    exigir(
+        reserva.costo_total is None,
+        f"La reserva cancelada conserva costo_total = {reserva.costo_total!r}"
+    )
+
+    return "Reserva cancelada correctamente y costo total eliminado"
+
 
 
 def op_estabilidad_final():
