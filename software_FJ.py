@@ -571,6 +571,43 @@ class PruebasSoftwareFJ(unittest.TestCase):
             self.cliente.nombre,
             nombre_original
         )
+    
+    # --------------------------------------------------------
+    # PRUEBA 15: CANCELACION DE UNA RESERVA CONFIRMADA
+    # --------------------------------------------------------
+
+    def test_cancelar_reserva_confirmada_limpia_costo(self):
+        """
+        Verifica que una reserva previamente confirmada
+        pueda cancelarse correctamente.
+
+        Esta prueba comprueba que:
+        1. La reserva inicia en estado PENDIENTE.
+        2. La confirmacion calcula y almacena su costo.
+        3. La cancelacion cambia el estado a CANCELADA.
+        4. El costo total se limpia y vuelve a ser None.
+
+        Esta validacion evita conservar valores asociados
+        a reservas que ya no se encuentran activas.
+        """
+
+        # Se crea una reserva valida de dos horas.
+        reserva = self.crear_reserva(duracion=2)
+
+        # Se confirma y se verifica el costo calculado.
+        reserva.confirmar_reserva()
+
+        self.assertEqual(reserva.estado, Reserva.CONFIRMADA)
+        self.assertEqual(reserva.costo_total, 90000)
+
+        # Se cancela la reserva previamente confirmada.
+        reserva.cancelar_reserva()
+
+        # El estado debe cambiar a CANCELADA.
+        self.assertEqual(reserva.estado, Reserva.CANCELADA)
+
+        # El costo no debe conservarse despues de cancelar.
+        self.assertIsNone(reserva.costo_total)
 
 
 # ============================================================
