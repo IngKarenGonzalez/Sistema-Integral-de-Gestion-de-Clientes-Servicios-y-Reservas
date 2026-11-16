@@ -224,6 +224,9 @@ class Reserva(Entidad):
 
         # Se actualiza el estado de la reserva.
         self.__estado = self.CANCELADA
+        # Se limpia el costo de la reserva cancelada
+        # para evitar conservar un cobro activo.
+        self.__costo_total = None
 
         # Se devuelve un mensaje de confirmación.
         return "Reserva cancelada correctamente."

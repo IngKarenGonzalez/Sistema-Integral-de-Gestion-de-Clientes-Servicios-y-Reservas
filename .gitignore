@@ -14,3 +14,7 @@ venv/
 # Archivos temporales del sistema operativo
 .DS_Store
 Thumbs.db
+
+sistema_fj.log
+
+logs_software_fj.log
