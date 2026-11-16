@@ -23,6 +23,10 @@ from servicios import (
     AsesoriasEspecializadas,
 )
 
+# Modulos de manejo de errores y registro de eventos de Karen
+from logger import registrar_log
+from excepciones import SoftwareFJError
+
 
 # ============================================================
 # 2. SERVICIOS FICTICIOS PARA LAS PRUEBAS UNITARIAS
@@ -181,8 +185,16 @@ def ejecutar_sistema():
     print("UNIVERSIDAD NACIONAL ABIERTA Y A DISTANCIA - UNAD")
     print("=" * 60)
 
+    # Registrar el inicio de la ejecucion
+    registrar_log(
+        "Inicio de la ejecucion del Sistema Integral Software FJ.",
+        "INFO"
+    )
+
     try:
+        # ----------------------------------------------------
         # CREACION DEL CLIENTE
+        # ----------------------------------------------------
 
         cliente = Cliente(
             "C001",
@@ -194,7 +206,14 @@ def ejecutar_sistema():
         print("\nINFORMACION DEL CLIENTE")
         print(cliente.mostrar_informacion())
 
+        registrar_log(
+            "Cliente creado correctamente.",
+            "INFO"
+        )
+
+        # ----------------------------------------------------
         # CREACION DE LOS SERVICIOS
+        # ----------------------------------------------------
 
         sala = ReservaSalas(
             "S001",
@@ -219,7 +238,14 @@ def ejecutar_sistema():
 
         servicios = [sala, equipos, asesoria]
 
+        registrar_log(
+            "Se crearon correctamente los tres servicios.",
+            "INFO"
+        )
+
+        # ----------------------------------------------------
         # PRUEBAS DE COSTOS, DESCUENTOS E IMPUESTOS
+        # ----------------------------------------------------
 
         print("\n")
         print("=" * 60)
@@ -250,7 +276,14 @@ def ejecutar_sistema():
                 f"${servicio.calcular_costo(2, descuento=10, impuesto=19):,.2f}"
             )
 
+            registrar_log(
+                f"Calculos de costos completados para el servicio: {servicio.nombre}",
+                "INFO"
+            )
+
+        # ----------------------------------------------------
         # CREACION DE LAS RESERVAS
+        # ----------------------------------------------------
 
         reserva1 = Reserva("R001", cliente, sala, 1.5)
         reserva2 = Reserva("R002", cliente, equipos, 1.5)
@@ -258,7 +291,14 @@ def ejecutar_sistema():
 
         reservas = [reserva1, reserva2, reserva3]
 
+        registrar_log(
+            "Se crearon correctamente las tres reservas.",
+            "INFO"
+        )
+
+        # ----------------------------------------------------
         # CONFIRMACION DE RESERVAS
+        # ----------------------------------------------------
 
         print("\n")
         print("=" * 60)
@@ -271,10 +311,47 @@ def ejecutar_sistema():
             print(reserva.mostrar_informacion())
             print("-" * 60)
 
+            registrar_log(
+                "Reserva confirmada correctamente.",
+                "INFO"
+            )
+
         print("\nSistema ejecutado correctamente.")
 
-    except (TypeError, ValueError) as error:
+    # --------------------------------------------------------
+    # MANEJO DE ERRORES
+    # --------------------------------------------------------
+
+    except (TypeError, ValueError, SoftwareFJError) as error:
+
         print("\nERROR EN EL SISTEMA:", error)
+
+        registrar_log(
+            f"Error durante la ejecucion del sistema: {error}",
+            "ERROR"
+        )
+
+    # --------------------------------------------------------
+    # EJECUCION EXITOSA
+    # --------------------------------------------------------
+
+    else:
+
+        registrar_log(
+            "Sistema ejecutado correctamente.",
+            "INFO"
+        )
+
+    # --------------------------------------------------------
+    # FINALIZACION DEL PROCESO
+    # --------------------------------------------------------
+
+    finally:
+
+        registrar_log(
+            "Finalizo el proceso de ejecucion del sistema.",
+            "INFO"
+        )
 
 
 # ============================================================
