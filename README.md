@@ -205,7 +205,7 @@ La ejecución presenta ejemplos de operaciones relacionadas con clientes, servic
 
 ## 10. Pruebas unitarias
 
-El archivo `software_FJ.py` incorpora una batería de **14 pruebas unitarias automatizadas**.
+El archivo `software_FJ.py` incorpora una batería de **15 pruebas unitarias automatizadas**.
 
 Para ejecutarlas:
 
@@ -228,8 +228,9 @@ Las pruebas verifican aspectos como:
 - Validación de duraciones inválidas.
 - Control de modificaciones no permitidas.
 - Protección de los datos frente a operaciones incorrectas.
+- Verificación de la cancelación de reservas confirmadas y eliminación del costo total asociado.
 
-**Resultado de la verificación realizada:** 14 pruebas ejecutadas satisfactoriamente.
+**Resultado de la verificación realizada:** 15 pruebas ejecutadas satisfactoriamente.
 
 ## 11. Simulaciones de funcionamiento
 
@@ -316,7 +317,7 @@ Se incorporaron validaciones, mecanismos de control de excepciones, registro de 
 Las verificaciones realizadas permitieron comprobar:
 
 - Ejecución satisfactoria del programa principal.
-- Superación de las 14 pruebas unitarias.
+- Superación de las 15 pruebas unitarias.
 - Ejecución de 20 operaciones simuladas.
 - Registro de errores controlados.
 - Ausencia de defectos en las simulaciones verificadas.
