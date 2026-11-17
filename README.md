@@ -1,9 +1,13 @@
 # Sistema Integral de Gestión de Clientes, Servicios y Reservas – Software FJ
 
-**Universidad Nacional Abierta y a Distancia – UNAD**  
-**Curso:** Programación (213023)  
-**Actividad:** Fase 4 – Componente práctico: Prácticas simuladas  
-**Lenguaje de programación:** Python  
+**Universidad Nacional Abierta y a Distancia – UNAD**
+
+**Curso:** Programación (213023)
+
+**Actividad:** Fase 4 – Componente práctico: Prácticas simuladas
+
+**Lenguaje de programación:** Python
+
 **Paradigma:** Programación Orientada a Objetos (POO)
 
 ---
@@ -16,16 +20,17 @@ El proyecto aplica los principios de la Programación Orientada a Objetos median
 
 El sistema permite registrar clientes, administrar sus datos, representar servicios especializados, calcular costos, gestionar reservas y controlar situaciones excepcionales durante la ejecución.
 
-Adicionalmente, incorpora mecanismos de registro de eventos (*logging*), pruebas automatizadas y simulaciones de operaciones válidas e inválidas.
+Adicionalmente, incorpora mecanismos de registro de eventos (**logging**), pruebas automatizadas y simulaciones de operaciones válidas e inválidas.
+
+El proyecto cuenta con una **interfaz gráfica en inglés desarrollada mediante Tkinter**, que permite registrar clientes al crear reservas, consultar su información, confirmar o cancelar reservas y visualizar mensajes de validación. La interfaz reutiliza las clases existentes y mantiene la información en memoria durante la ejecución.
 
 ## 2. Objetivos del proyecto
 
 ### Objetivo general
 
-Desarrollar e integrar un sistema modular de gestión de clientes, servicios y reservas mediante la aplicación de los principios de Programación Orientada a Objetos, manejo de excepciones, pruebas funcionales y registro de eventos.
+Desarrollar e integrar un sistema modular de gestión de clientes, servicios y reservas mediante la aplicación de los principios de Programación Orientada a Objetos, manejo de excepciones, pruebas funcionales, registro de eventos e interfaz gráfica en inglés.
 
 ### Objetivos específicos
-
 - Implementar clases que representen las entidades principales del sistema.
 - Aplicar encapsulamiento, herencia, abstracción y polimorfismo.
 - Validar la información ingresada y controlar operaciones no permitidas.
@@ -34,11 +39,12 @@ Desarrollar e integrar un sistema modular de gestión de clientes, servicios y r
 - Implementar excepciones personalizadas y mecanismos de registro de eventos.
 - Verificar el funcionamiento mediante pruebas unitarias y simulaciones.
 - Integrar los aportes del equipo utilizando GitHub y Pull Requests.
+- Implementar una interfaz gráfica en inglés mediante Tkinter que reutilice los módulos existentes.
+- Presentar mensajes de validación específicos y registrar los errores de la interfaz sin cerrar la aplicación ante los datos inválidos evaluados.
 
 ## 3. Arquitectura y organización del proyecto
 
 El proyecto se encuentra organizado en diferentes archivos Python para facilitar su comprensión, mantenimiento y ampliación.
-
 | Archivo | Función principal |
 |---|---|
 | `entidad.py` | Define la estructura abstracta general utilizada como base del sistema. |
@@ -48,6 +54,7 @@ El proyecto se encuentra organizado en diferentes archivos Python para facilitar
 | `excepciones.py` | Define excepciones personalizadas para representar errores específicos del sistema. |
 | `logger.py` | Proporciona mecanismos para registrar eventos, advertencias y errores. |
 | `software_FJ.py` | Constituye el programa principal e integra los módulos y las pruebas unitarias. |
+| `interfaz.py` | Implementa la interfaz Tkinter en inglés para crear, consultar, confirmar y cancelar reservas, con validaciones y registro de eventos. |
 | `simulacion.py` | Ejecuta 20 operaciones simuladas y verifica los resultados y registros de eventos. |
 | `prueba_excepciones_logs.py` | Contiene verificaciones relacionadas con excepciones y registro de eventos. |
 | `prueba_integración.py` | Incluye pruebas de integración de los servicios. |
@@ -85,7 +92,6 @@ Así, el sistema puede trabajar con distintos tipos de servicios sin depender de
 ### 5.1. Gestión de clientes
 
 El sistema permite crear clientes y administrar información como:
-
 - Identificador.
 - Nombre.
 - Correo electrónico.
@@ -96,7 +102,6 @@ Se implementan validaciones para evitar información incorrecta, como correos co
 ### 5.2. Gestión de servicios
 
 Se incluyen servicios especializados relacionados con:
-
 - Reserva de salas.
 - Alquiler de equipos.
 - Asesorías especializadas.
@@ -110,7 +115,6 @@ También se contemplan descuentos e impuestos, con validaciones destinadas a evi
 El sistema permite crear reservas y administrar su ciclo de vida.
 
 Se consideran estados como:
-
 - `PENDIENTE`
 - `CONFIRMADA`
 - `CANCELADA`
@@ -124,12 +128,26 @@ Por ejemplo, se controla la confirmación de reservas previamente canceladas y l
 El sistema calcula valores asociados con los servicios solicitados.
 
 Entre las operaciones verificadas se encuentran:
-
 - Cálculo del costo normal.
 - Aplicación de descuentos.
 - Aplicación de impuestos.
 - Cálculo del costo total de reservas confirmadas.
 - Validación de duraciones y valores numéricos.
+
+### 5.5. Interfaz gráfica en inglés (Tkinter)
+
+La interfaz de usuario se encuentra en el archivo `interfaz.py` y presenta una ventana de administración de reservas con un listado a la izquierda y los detalles de la reserva seleccionada a la derecha.
+
+Entre las funcionalidades verificadas se encuentran:
+- Registro de información del cliente como parte de la creación de una reserva.
+- Creación de reservas de salas (**Room Reservation**), alquiler de equipos (**Equipment Rental**) y asesorías (**Specialized Consulting**).
+- Confirmación y cancelación de reservas mediante métodos de la clase `Reserva`.
+- Visualización de los estados `PENDING`, `CONFIRMED` y `CANCELLED`, sincronizados entre ambos paneles. Estos corresponden a los estados internos `PENDIENTE`, `CONFIRMADA` y `CANCELADA`.
+- Presentación de información del cliente, características del servicio y resumen de costos de reservas confirmadas.
+- Validaciones particulares de nombres, datos de contacto, duración, descuento, impuesto, capacidad, cantidad, especialidad y asesor.
+- Mensajes de confirmación y errores en inglés, con registro de eventos y conservación de la ventana durante los errores controlados comprobados.
+
+La interfaz utiliza los componentes existentes sin sustituir las reglas de negocio de los módulos Python y conserva los datos en memoria durante la sesión.
 
 ## 6. Manejo de excepciones
 
@@ -138,7 +156,6 @@ El proyecto incorpora mecanismos para detectar y controlar situaciones incorrect
 Se utilizan excepciones estándar de Python y excepciones personalizadas para representar errores relacionados con las reglas del sistema.
 
 También se aplican estructuras de manejo de excepciones, incluyendo:
-
 - `try`
 - `except`
 - `else`
@@ -146,12 +163,13 @@ También se aplican estructuras de manejo de excepciones, incluyendo:
 
 Estas estructuras permiten distinguir operaciones exitosas, errores controlados y actividades de finalización.
 
+En `interfaz.py` se utilizan bloques `try/except` para controlar errores de entrada y mostrar avisos en inglés mediante `messagebox`. Las excepciones conocidas de las clases se presentan al usuario con mensajes traducidos y los detalles originales se registran para su revisión.
+
 ## 7. Registro de eventos (logging)
 
 El sistema dispone de mecanismos para registrar información relacionada con su ejecución.
 
 Los registros permiten realizar seguimiento a:
-
 - Inicio y finalización de operaciones.
 - Operaciones completadas correctamente.
 - Advertencias asociadas con errores controlados.
@@ -159,19 +177,20 @@ Los registros permiten realizar seguimiento a:
 
 El registro de eventos constituye una herramienta de apoyo para la depuración, trazabilidad y revisión del funcionamiento del programa.
 
+Además de los logs de simulaciones, las acciones de la interfaz Tkinter registran creaciones, confirmaciones, cancelaciones y errores controlados mediante el mecanismo de `logger.py`. En la revisión funcional se verificaron estos registros en `sistema_fj.log`.
+
 Los archivos de log generados durante la ejecución se consideran evidencias temporales y pueden excluirse del control de versiones mediante `.gitignore`.
 
 ## 8. Requisitos para la ejecución
 
 Para ejecutar el proyecto se requiere:
-
 - Python 3 instalado.
 - Una terminal compatible con Python.
 - Los archivos del proyecto descargados en una misma carpeta.
 
 Se recomienda utilizar Visual Studio Code como entorno de desarrollo, aunque no es obligatorio.
 
-El sistema utiliza funcionalidades de Python y su biblioteca estándar para la ejecución principal y las pruebas unitarias.
+El sistema utiliza funcionalidades de Python y su biblioteca estándar para la ejecución principal, las pruebas unitarias y la interfaz Tkinter. Para la versión gráfica se requiere disponer del módulo `tkinter` en la instalación de Python.
 
 ## 9. Instrucciones de ejecución
 
@@ -203,6 +222,24 @@ py software_FJ.py
 
 La ejecución presenta ejemplos de operaciones relacionadas con clientes, servicios, costos y confirmación de reservas.
 
+### 9.3. Ejecutar la interfaz gráfica (Tkinter)
+
+Para iniciar la ventana en inglés desde la misma carpeta del proyecto:
+
+```bash
+python interfaz.py
+```
+
+En Windows:
+
+```bash
+py interfaz.py
+```
+
+En la ventana, seleccionar **ADD NEW RESERVATION** para registrar los datos del cliente y crear una reserva. Después se puede seleccionar una tarjeta del panel izquierdo y utilizar **CONFIRM** o **CANCEL**, según el estado permitido.
+
+La interfaz conserva la información en memoria durante la ejecución; cerrar la ventana no guarda las reservas en una base de datos.
+
 ## 10. Pruebas unitarias
 
 El archivo `software_FJ.py` incorpora una batería de **15 pruebas unitarias automatizadas**.
@@ -220,7 +257,6 @@ py software_FJ.py --test
 ```
 
 Las pruebas verifican aspectos como:
-
 - Actualización de información de clientes.
 - Creación y estados iniciales de reservas.
 - Confirmación y cálculo de costos.
@@ -254,7 +290,9 @@ Durante la verificación realizada se obtuvo el siguiente resultado:
 
 ```text
 Operaciones ejecutadas: 20
+
 OK: 20
+
 Defectos: 0
 ```
 
@@ -270,7 +308,9 @@ Los resultados obtenidos incluyeron:
 
 ```text
 Operaciones con INICIO y FIN registrados: 20/20
+
 Errores controlados registrados: 14
+
 Defectos registrados: 0
 ```
 
@@ -285,7 +325,6 @@ El desarrollo del proyecto se realizó mediante Git y GitHub.
 Se utilizaron ramas de trabajo, commits y Pull Requests para organizar los aportes, revisar cambios e integrar las funcionalidades.
 
 Entre las actividades realizadas se encuentran:
-
 - Desarrollo de las clases de clientes y reservas.
 - Implementación de servicios especializados.
 - Integración de los módulos del sistema.
@@ -294,13 +333,15 @@ Entre las actividades realizadas se encuentran:
 - Corrección de validaciones y reglas de negocio.
 - Documentación técnica del programa principal.
 
+También se incorporó el archivo `interfaz.py` mediante la **Pull Request #18**, después de una revisión colaborativa de sus estados, validaciones y logs. En la fase de cierre se utilizaron **Issues** para organizar y verificar las actividades restantes.
+
 El historial del repositorio y sus Pull Requests constituyen evidencias del proceso de construcción e integración colaborativa.
 
 ## 14. Integrantes y aportes
 
-**Isabella Pineda Rodríguez:** desarrollo de las clases relacionadas con clientes y reservas, pruebas unitarias, integración modular, revisión de funcionalidades y documentación técnica.
+**Isabella Pineda Rodríguez:** desarrollo de las clases relacionadas con clientes y reservas, pruebas unitarias, integración modular, revisión de la interfaz y de otras funcionalidades, y documentación técnica.
 
-**María Paula Marín Tolosa:** desarrollo y validación de servicios especializados, cálculos de costos y pruebas de integración.
+**María Paula Marín Tolosa:** desarrollo y validación de servicios especializados, cálculos de costos, pruebas de integración y desarrollo de la interfaz gráfica Tkinter en inglés, con ajustes revisados colaborativamente.
 
 **Karen Lizeth González:** administración del repositorio e implementación de componentes relacionados con excepciones personalizadas y registro de eventos.
 
@@ -315,23 +356,35 @@ La integración del sistema permitió consolidar los módulos de clientes, servi
 Se incorporaron validaciones, mecanismos de control de excepciones, registro de eventos y pruebas automatizadas.
 
 Las verificaciones realizadas permitieron comprobar:
-
 - Ejecución satisfactoria del programa principal.
 - Superación de las 15 pruebas unitarias.
 - Ejecución de 20 operaciones simuladas.
 - Registro de errores controlados.
 - Ausencia de defectos en las simulaciones verificadas.
 - Integración de los aportes mediante GitHub.
+- Incorporación y apertura de la interfaz Tkinter desde la rama `main`.
+- Creación, confirmación y cancelación de reservas desde la interfaz para los servicios evaluados.
+- Presentación de errores específicos en inglés y registro de eventos de las acciones verificadas.
 
 ## 16. Conclusiones
 
-El proyecto Software FJ permitió aplicar de manera práctica los fundamentos de la Programación Orientada a Objetos mediante la construcción de un sistema modular.
+El proyecto Software FJ permitió aplicar de manera práctica los fundamentos de la Programación Orientada a Objetos mediante la construcción de un sistema modular. La interfaz Tkinter en inglés complementó esta arquitectura al conectar las funcionalidades existentes con formularios, acciones visuales y mensajes de validación.
 
 La implementación de validaciones, excepciones y registros de eventos contribuyó a mejorar el control y la trazabilidad de las operaciones.
 
 Las pruebas unitarias y las simulaciones facilitaron la identificación y verificación de comportamientos esperados, tanto en escenarios válidos como inválidos.
 
-Finalmente, el uso de GitHub permitió organizar el desarrollo colaborativo, conservar evidencias de los aportes y mantener un historial de integración del proyecto.
+Finalmente, el uso de GitHub permitió organizar el desarrollo colaborativo, conservar evidencias de los aportes y mantener un historial de integración del proyecto. La documentación del README, los Issues y las Pull Requests facilita la revisión de los resultados y del proceso de trabajo.
+
+## 17. Declaración de uso de inteligencia artificial
+
+Durante el desarrollo del Sistema Integral de Gestión de Clientes, Servicios y Reservas – Software FJ se utilizó inteligencia artificial generativa, como herramienta de apoyo para comprender conceptos de Programación Orientada a Objetos, analizar y revisar código, identificar posibles errores, proponer mejoras y organizar pruebas y documentación técnica.
+
+También se empleó como orientación para resolver dificultades con Git y GitHub, integrar componentes, revisar el manejo de excepciones, fortalecer validaciones de formularios e interpretar los resultados de las verificaciones realizadas.
+
+Las sugerencias generadas con esta herramienta fueron revisadas, adaptadas y comprobadas por los estudiantes mediante la ejecución del código y sus pruebas. Las decisiones técnicas, la integración, la validación de resultados y la responsabilidad académica del trabajo permanecieron a cargo de los integrantes del equipo.
+
+El uso de inteligencia artificial constituyó un apoyo complementario al aprendizaje y a la revisión colaborativa, sin sustituir el análisis crítico ni las responsabilidades de quienes participaron en el proyecto.
 
 ---
 
