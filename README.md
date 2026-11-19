@@ -59,6 +59,7 @@ El proyecto se encuentra organizado en diferentes archivos Python para facilitar
 | `prueba_excepciones_logs.py` | Contiene verificaciones relacionadas con excepciones y registro de eventos. |
 | `prueba_integración.py` | Incluye pruebas de integración de los servicios. |
 | `pruebas_adicionales.py` | Contiene pruebas complementarias de funcionalidades del sistema. |
+| `test_validaciones_martin.py` | Contiene 15 pruebas unitarias adicionales de validación de clientes, servicios, reservas, reglas de negocio y excepciones personalizadas. |
 | `.gitignore` | Excluye archivos generados automáticamente que no deben incorporarse al repositorio. |
 
 ## 4. Principios de Programación Orientada a Objetos
@@ -242,7 +243,19 @@ La interfaz conserva la información en memoria durante la ejecución; cerrar la
 
 ## 10. Pruebas unitarias
 
-El archivo `software_FJ.py` incorpora una batería de **15 pruebas unitarias automatizadas**.
+El proyecto cuenta con **30 pruebas unitarias automatizadas**, distribuidas en dos baterías independientes de 15 pruebas cada una.
+
+### 10.1. Pruebas unitarias originales
+
+El archivo `software_FJ.py` incorpora 15 pruebas unitarias que verifican:
+- Actualización de información de clientes.
+- Creación y estados iniciales de reservas.
+- Confirmación y cálculo de costos.
+- Rechazo de costos negativos o no numéricos.
+- Validación de duraciones inválidas.
+- Control de modificaciones no permitidas.
+- Protección de los datos frente a operaciones incorrectas.
+- Verificación de la cancelación de reservas confirmadas y eliminación del costo total asociado.
 
 Para ejecutarlas:
 
@@ -256,17 +269,43 @@ En Windows:
 py software_FJ.py --test
 ```
 
-Las pruebas verifican aspectos como:
-- Actualización de información de clientes.
-- Creación y estados iniciales de reservas.
-- Confirmación y cálculo de costos.
-- Rechazo de costos negativos o no numéricos.
-- Validación de duraciones inválidas.
-- Control de modificaciones no permitidas.
-- Protección de los datos frente a operaciones incorrectas.
-- Verificación de la cancelación de reservas confirmadas y eliminación del costo total asociado.
+**Resultado de la verificación realizada:** 15 pruebas ejecutadas satisfactoriamente.
+
+### 10.2. Pruebas unitarias adicionales de Martín
+
+El archivo `test_validaciones_martin.py`, incorporado mediante la **Pull Request #21**, contiene 15 pruebas unitarias adicionales enfocadas en:
+- Validación de identificadores y comprobación de clases abstractas.
+- Actualización y validación de correo electrónico y teléfono.
+- Validaciones específicas de reserva de salas, alquiler de equipos y asesorías especializadas.
+- Cálculo de costos según cantidad, duración, descuentos e impuestos.
+- Confirmación de reservas utilizando servicios especializados reales.
+- Restricciones sobre reservas canceladas.
+- Jerarquía de excepciones personalizadas y pruebas de encadenamiento mediante `raise ... from ...`.
+
+Para ejecutar esta batería desde la carpeta del proyecto:
+
+```bash
+python -m unittest discover -p "test_*.py" -v
+```
+
+En Windows:
+
+```bash
+py -m unittest discover -p "test_*.py" -v
+```
 
 **Resultado de la verificación realizada:** 15 pruebas ejecutadas satisfactoriamente.
+
+El archivo fue renombrado mediante la **Pull Request #22**, pasando de `Test_validaciones_martin.py` a `test_validaciones_martin.py` para seguir la convención de descubrimiento automático de `unittest`, sin modificar el contenido original de sus pruebas.
+
+### 10.3. Resultados consolidados
+
+Las baterías fueron ejecutadas y verificadas por separado:
+- **Pruebas unitarias originales:** 15/15 satisfactorias.
+- **Pruebas unitarias adicionales de Martín:** 15/15 satisfactorias.
+- **Total:** 30 pruebas unitarias satisfactorias.
+
+Las comprobaciones se efectuaron con dos comandos independientes; `software_FJ.py --test` ejecuta las pruebas originales y `unittest discover` ejecuta las pruebas adicionales.
 
 ## 11. Simulaciones de funcionamiento
 
@@ -335,6 +374,8 @@ Entre las actividades realizadas se encuentran:
 
 También se incorporó el archivo `interfaz.py` mediante la **Pull Request #18**, después de una revisión colaborativa de sus estados, validaciones y logs. En la fase de cierre se utilizaron **Issues** para organizar y verificar las actividades restantes.
 
+Posteriormente, Martín incorporó 15 pruebas unitarias adicionales mediante la **Pull Request #21**, vinculada al **Issue #13**. Su contribución se revisó junto con las pruebas existentes y las simulaciones, obteniendo resultados satisfactorios. Mediante la **Pull Request #22** se normalizó el nombre del archivo de pruebas, sin modificar su contenido. Ambos cambios quedaron integrados en la rama `main`.
+
 El historial del repositorio y sus Pull Requests constituyen evidencias del proceso de construcción e integración colaborativa.
 
 ## 14. Integrantes y aportes
@@ -347,6 +388,8 @@ El historial del repositorio y sus Pull Requests constituyen evidencias del proc
 
 **Jhon Alexis:** desarrollo de simulaciones de operaciones válidas e inválidas y verificación de registros de eventos.
 
+**Martín Ricardo García Bautista:** desarrollo de 15 pruebas unitarias adicionales para verificar reglas de negocio, validaciones de clientes, servicios especializados, reservas, cálculos y excepciones personalizadas, integradas mediante la Pull Request #21.
+
 Los aportes integrados pueden consultarse mediante el historial de commits y Pull Requests del repositorio.
 
 ## 15. Resultados generales
@@ -357,11 +400,12 @@ Se incorporaron validaciones, mecanismos de control de excepciones, registro de 
 
 Las verificaciones realizadas permitieron comprobar:
 - Ejecución satisfactoria del programa principal.
-- Superación de las 15 pruebas unitarias.
+- Ejecución satisfactoria de **30 pruebas unitarias**: 15 originales y 15 adicionales de Martín.
 - Ejecución de 20 operaciones simuladas.
 - Registro de errores controlados.
 - Ausencia de defectos en las simulaciones verificadas.
 - Integración de los aportes mediante GitHub.
+- Incorporación de las pruebas adicionales mediante la PR #21 y normalización de su nombre de archivo mediante la PR #22.
 - Incorporación y apertura de la interfaz Tkinter desde la rama `main`.
 - Creación, confirmación y cancelación de reservas desde la interfaz para los servicios evaluados.
 - Presentación de errores específicos en inglés y registro de eventos de las acciones verificadas.
